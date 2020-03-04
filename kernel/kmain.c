@@ -13,8 +13,11 @@ void kmain() {
     kinit();
 
     char *a = "Hello World!\n";
-    kprint(a);
+    printf(a);
     char b[strlen(a)];
     strcpy(b, a);
-    kprint(b);
+    printf(b);
+
+    int x = 33;
+    printf(&x);
 }
