@@ -9,17 +9,17 @@
 /* -------------------- */
 
 void kscroll() {
-    char *screen = (char *)0x000B8000;
+    uint8_t *screen = (uint8_t *)VIDEO_ADDRESS;
     for (uint32_t i = 0; i < (MAX_ROWS*MAX_COLS); i++) {
-        char text = screen[2*i];
+        uint8_t text = screen[2*i];
         screen[2*(i-MAX_COLS)] = text;
     }
     row--;
     move_cursor(row*80+col);
 }
 
-void kprint_char(char s) {
-    char *screen = (char *)VIDEO_ADDRESS;
+void kprint_char(const char s) {
+    uint8_t *screen = (uint8_t *)VIDEO_ADDRESS;
     if (s == '\n') {
         row += 1;
         col = 0;
@@ -48,7 +48,7 @@ void set_colour(uint8_t c) {
     colour = tc;
 }
 
-void kprint(char *p) {
+void kprint(const char *p) {
     uint8_t l = strlen(p);
     for (uint8_t i = 0; i < l; i++) {
         kprint_char(p[i]);
@@ -70,9 +70,20 @@ void display_init() {
     clear_screen();
     move_cursor(row*80+col);
 
-    kprint("Hello World!\nWelcome to my ");
+    // uint8_t *welcomeMsg = (uint8_t *)"Hello World!\nWelcome to my ";
+    // uint8_t *msg2 = (uint8_t *)"OS\n";
+    // uint8_t *msg3 = (uint8_t *)"DebankleOS - The piece of shit I threw together\n\n";
+
+    // kprint(welcomeMsg);
+    // set_colour(4);
+    // kprint(msg2);
+    // set_colour(9);
+    // kprint(msg3);
+
     set_colour(4);
-    kprint("OS\n\n");
+    kprint("Welcome to my OS\n");
+    set_colour(9);
+    kprint("DebankleOS - The piece of shit I threw together\n\n");
 
     set_colour(15);
 }

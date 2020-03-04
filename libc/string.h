@@ -3,7 +3,6 @@
 
 #include "stdint.h"
 
-char *strcpy(char *destination, const char *source);
-char strcat(const char *str1, const char *str2, char *destination);
+void strcpy(char *destination, const char *source);
 
 #endif // OS_STRING

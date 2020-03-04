@@ -11,4 +11,10 @@ void kinit() {
 
 void kmain() {
     kinit();
+
+    char *a = "Hello World!\n";
+    kprint(a);
+    char b[strlen(a)];
+    strcpy(b, a);
+    kprint(b);
 }

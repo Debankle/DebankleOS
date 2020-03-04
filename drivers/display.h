@@ -34,7 +34,7 @@ uint8_t colour;
 void display_init();
 void clear_screen();
 
-void kprint(char *p);
+void kprint(const char *p);
 void set_colour(uint8_t c);
 
 #endif // OS_DISPLAY
