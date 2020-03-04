@@ -8,6 +8,12 @@
 /*   Private Functions  */
 /* -------------------- */
 
+bool center;
+
+void toggle_center() {
+    center = !center;
+}
+
 void kscroll() {
     uint8_t *screen = (uint8_t *)VIDEO_ADDRESS;
     for (uint32_t i = 0; i < (MAX_ROWS*MAX_COLS); i++) {
@@ -49,6 +55,12 @@ void set_colour(uint8_t c) {
 }
 
 void kprint(const char *p) {
+    if (center) {
+        int spaceNo = (MAX_COLS - strlen(p))/2;
+        for (int i = 0; i < spaceNo; i++) {
+            kprint_char(' ');
+        }
+    }
     uint8_t l = strlen(p);
     for (uint8_t i = 0; i < l; i++) {
         kprint_char(p[i]);
@@ -69,16 +81,9 @@ void display_init() {
     set_colour(15);
     clear_screen();
     move_cursor(row*80+col);
+    center = false;
 
-    // uint8_t *welcomeMsg = (uint8_t *)"Hello World!\nWelcome to my ";
-    // uint8_t *msg2 = (uint8_t *)"OS\n";
-    // uint8_t *msg3 = (uint8_t *)"DebankleOS - The piece of shit I threw together\n\n";
-
-    // kprint(welcomeMsg);
-    // set_colour(4);
-    // kprint(msg2);
-    // set_colour(9);
-    // kprint(msg3);
+    toggle_center();
 
     set_colour(4);
     kprint("Welcome to my OS\n");
@@ -86,4 +91,5 @@ void display_init() {
     kprint("DebankleOS - The piece of shit I threw together\n\n");
 
     set_colour(15);
+    toggle_center();
 }

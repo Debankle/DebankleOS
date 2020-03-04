@@ -5,6 +5,7 @@
 #define MAX_COLS 80
 
 #include "../libc/stdint.h"
+#include "../libc/stddef.h"
 
 #define VIDEO_ADDRESS 0x000B8000
 
