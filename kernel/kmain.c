@@ -9,10 +9,6 @@ void kinit() {
     display_init();
 }
 
-extern void int_test(void);
-
 void kmain() {
     kinit();
-
-    int_test();
 }
