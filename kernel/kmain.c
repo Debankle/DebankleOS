@@ -13,11 +13,13 @@ void kmain() {
     kinit();
 
     char *a = "Hello World!\n";
-    printf(a);
+    printf(a, TYPE_CHAR);
     char b[strlen(a)];
     strcpy(b, a);
-    printf(b);
+    printf(b, TYPE_CHAR);
 
     int x = 33;
-    printf(&x);
+    printf(&x, TYPE_INT);
+
+    kprint("\n");
 }
