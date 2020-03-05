@@ -1,19 +1,46 @@
 #include "stdio.h"
 #include "string.h"
 
-void printf(void *s) {
-    char *printString;
-    char buffer[33];
+// void printf(char *s, ...) {
+//     char *printString;
+//     char buffer[20];
+//     void *beg = &s;
+//     int i;
+//     beg += sizeof(char*);
+//     for (i = 0; i < strlen(s); i++) {
+//         if (s[i] == '%') {
+//             switch (s[i+1]) {
+//                 case 's':
+//                     printString += *(char*)beg;
+//                     beg += sizeof(char*);
+//                     break;
+//                 case 'd':
+//                     printString += *itoa((int)&beg, buffer);
+//                     beg += sizeof(int);
+//                     break;
+//                 default:
+//                     printString += *(char*)beg;
+//                     beg += sizeof(char*);
+//             }
+//             i++;
+//         } else {
+//             printString += s[i];
+//         }
+//     }
 
-    switch (_Generic(s, char*: 1, int: 2, bool: 3, default: 0)) {
-        case 1:
-            printString = s;
+//     kprint(printString);
+// }
+
+void printf(void *s, type_t t) {
+    char *printString;
+    char buffer[20];
+
+    switch (t) {
+        case TYPE_CHAR:
+            printString = (char*)s;
             break;
-        case 2:
-            printString = itoa((int)&s, buffer);
-            break;
-        case 0:
-            printString = s;
+        case TYPE_INT:
+            printString = itoa(*((int *)s), buffer);
             break;
         default:
             printString = s;
