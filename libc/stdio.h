@@ -5,7 +5,6 @@
 #include "stddef.h"
 #include "../drivers/display.h"
 
-// void printf(char *s, ...);
 void printf(void *s, type_t t);
 uint8_t strlen(const char *s);
 
